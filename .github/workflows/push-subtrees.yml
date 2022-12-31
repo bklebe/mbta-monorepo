@@ -2,8 +2,6 @@
 
 name: Push Subtrees
 
-concurrency: subtree-sync
-
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
@@ -31,7 +29,7 @@ jobs:
           chmod 400 ./key
           git config --global core.sshCommand "ssh -i ./key -o IdentitiesOnly=yes"
           git subtree split --prefix=concentrate --branch=split
-          git push --force git@github.com:bklebe/concentrate-mirror.git split:master
+          git push git@github.com:bklebe/concentrate-mirror.git split:master
 
   push-trike:
     # The type of runner that the job will run on
@@ -52,4 +50,4 @@ jobs:
           chmod 400 ./key
           git config --global core.sshCommand "ssh -i ./key -o IdentitiesOnly=yes"
           git subtree split --prefix=trike --branch=split
-          git push --force git@github.com:bklebe/trike-mirror.git split:main
+          git push git@github.com:bklebe/trike-mirror.git split:main
